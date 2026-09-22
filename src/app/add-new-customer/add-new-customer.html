@@ -1,0 +1,57 @@
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-header">
+      Add New Customer
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formgroup" (ngSubmit)="saveCustomer()">
+        <div>
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name">
+      @if(formgroup.controls['name'].touched
+        && formgroup.controls['name'].errors
+        && formgroup.controls['name'].errors!['required']){
+        <span class="text-danger">
+          name is required
+        </span>
+      }
+        </div>
+        <div>
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email">
+          @if(formgroup.controls['email'].touched
+          && formgroup.controls['email'].errors
+          && formgroup.controls['email'].errors!['required']){
+            <span class="text-danger">
+          email is required
+        </span>
+          }
+      </div>
+        <div>
+          <label>Phone</label>
+          <input type="text" class="form-control" formControlName="phone">
+          @if(formgroup.controls['phone'].touched
+          && formgroup.controls['phone'].errors
+          && formgroup.controls['phone'].errors!['required']){
+            <span class="text-danger">
+          phone number is required
+        </span>
+          }
+        </div>
+        <div>
+          <label>Address</label>
+          <input type="text" class="form-control" formControlName="adresse">
+          @if(formgroup.controls['adresse'].touched
+          && formgroup.controls['adresse'].errors
+          && formgroup.controls['adresse'].errors!['required']){
+            <span class="text-danger">
+          adresse is required
+        </span>
+          }
+        </div>
+     <button  class="btn btn-success mt-3">Save</button>
+      </form>
+
+    </div>
+  </div>
+</div>

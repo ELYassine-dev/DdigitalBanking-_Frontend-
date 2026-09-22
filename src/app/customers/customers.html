@@ -1,0 +1,58 @@
+  <div class="card">
+    <div class="card-header ">List of Customers</div>
+    <div class="card-body">
+<!--      @if(formgroup){-->
+
+      <form [formGroup]="formgroup" (ngSubmit)="handleSearch()">
+       <div class="input-group">
+        <input type="text" formControlName="searchkw" class="form-control" >
+        <button class="btn btn-outline-success">
+          <i class="bi bi-search"></i>
+        </button>
+       </div>
+      </form>
+
+        <p>Customers count: {{ customers.length }}</p>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Adresse</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (customer of customers ; track customer.id; let i=$index){
+            <tr>
+              <td>{{i +1}}</td>
+              <td>{{customer.name}}</td>
+              <td>{{customer.email}}</td>
+              <td>{{customer.phone}}</td>
+              <td>{{customer.adresse}}</td>
+              <td >
+                <button (click)="handleDelete(customer)" class="btn btn-danger" >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+              <td >
+              <button (click)="handeleCustomerAccounts(customer)" class="btn btn-outline-success" >
+                <i class="bi bi-eye"></i>
+              </button>
+            </td>
+            </tr>
+          }
+
+        </tbody>
+      </table>
+<!--      } @else {-->
+
+<!--        <div class="text-muted">-->
+<!--          No customers found.-->
+<!--        </div>-->
+<!--      }-->
+
+    </div>
+  </div>
