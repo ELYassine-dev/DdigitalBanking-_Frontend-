@@ -1,3 +1,138 @@
-<div class="container">
-  {{customerid}}
+<div class="accounts-page">
+
+  <div class="page-header">
+    <div>
+      <h2>My Accounts</h2>
+      <p>Manage and view your bank accounts</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="accounts-grid">
+    @if (accounts().length > 0) {
+
+    @for (account of accounts(); track account.id) {
+
+      <div class="bank-card">
+
+        <!-- Top -->
+        <div class="bank-card-top">
+
+          <div class="account-type">
+            @if(account.type === 'CurrentAccount') {
+              <span>Current Account</span>
+            } @else {
+              <span>Saving Account</span>
+            }
+          </div>
+
+          <div class="status">
+            ● {{ account.status }}
+          </div>
+
+        </div>
+
+
+        <!-- Balance -->
+        <div class="balance">
+
+          <small>AVAILABLE BALANCE</small>
+
+          <div class="amount">
+            {{ account.balance | number:'1.2-2' }}
+            <span>{{ account.currency }}</span>
+          </div>
+
+        </div>
+
+
+        <!-- Account number -->
+        <div class="account-number">
+
+          <small>ACCOUNT NUMBER</small>
+
+          <strong>
+            {{ account.id }}
+          </strong>
+
+        </div>
+
+
+        <!-- Details -->
+        <div class="details">
+
+          <div>
+            <small>CUSTOMER</small>
+            <strong>{{ account.reqCustomerDto.name }}</strong>
+          </div>
+
+          <div>
+            <small>CREATED</small>
+            <strong>{{ account.createdAt | date:'dd/MM/yyyy' }}</strong>
+          </div>
+
+        </div>
+
+
+        <!-- Specific information -->
+        <div class="extra-info">
+
+          @if(account.type === 'CurrentAccount') {
+
+            <span>
+              Overdraft
+              <strong>
+                {{ account.overDraft }} {{ account.currency }}
+              </strong>
+            </span>
+
+          } @else {
+
+            <span>
+              Interest Rate
+              <strong>
+                {{ account.interestRate }}%
+              </strong>
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="card-action">
+
+          <button>
+            View account
+            <span>→</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    } } @else {
+      <p>Loading accounts...</p>
+    }
+
+  </div>
+
 </div>
+
+
+
+<!--<h1>Customer Accounts</h1>-->
+
+<!--<p>Customer ID: {{ customerid }}</p>-->
+
+<!--<p>Number of accounts: {{ getAccountsCount() }}</p>-->
+
+<!--@for (account of accounts(); track account.id) {-->
+<!--  <div>-->
+<!--    <h2>{{ account.type }}</h2>-->
+<!--    <p>{{ account.balance }}</p>-->
+<!--  </div>-->
+<!--}-->

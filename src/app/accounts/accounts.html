@@ -82,7 +82,10 @@
     <div class="col col-4">
 <div class="card">
   <div class="card-header">Operatiions</div>
-  <div class="card-body">
+
+    @if(authservice.roles.includes('ADMIN')){
+      <div class="card-body">
+
     <form [formGroup]="operationformgroup" (ngSubmit)="handleAccountOperation()" method="post">
 
       <div class="form-check form-check-inline">
@@ -121,6 +124,7 @@
       </div>
     </form>
   </div>
+      }
 
 </div>
     </div>

@@ -27,4 +27,8 @@ export class Customer {
   deleteCustomer(id: number) {
     return this.http.delete(`${this.host}/delete/`+id);
   }
+
+
+
+
 }

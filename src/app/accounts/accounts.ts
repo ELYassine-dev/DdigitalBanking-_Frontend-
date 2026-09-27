@@ -4,6 +4,7 @@ import { Account } from '../services/account';
 import { catchError, Observable, tap } from 'rxjs';
 import { AccountDetails } from '../model/Account.model';
 import { AsyncPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { LoginService } from '../services/login-service';
 
 @Component({
   selector: 'app-accounts',
@@ -24,7 +25,7 @@ export class Accounts implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountservice: Account,
+    private accountservice: Account,public authservice:LoginService
   ) {}
   ngOnInit(): void {
     this.formgroup = this.formBuilder.group({

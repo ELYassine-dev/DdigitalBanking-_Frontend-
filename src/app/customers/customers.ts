@@ -3,6 +3,7 @@ import { CustomerImp } from '../model/Customers.model';
 import { Customer } from '../services/customer';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login-service';
 
 @Component({
   selector: 'app-customers',
@@ -18,7 +19,7 @@ export class Customers implements OnInit {
   constructor(
     private customerService: Customer,
     private fb: FormBuilder,  private cd: ChangeDetectorRef,
-    private router:Router
+    private router:Router, public authservice:LoginService,
 
   ) {}
 
@@ -31,36 +32,17 @@ export class Customers implements OnInit {
     // this.handleSearch();
   }
 
-  // getCustomers() {
-  //   this.customerService.getCustomers().subscribe({
-  //     next: (data: any) => {
-  //       this.customers = data;
-  //     },
-  //     error: (error: any) => {
-  //       this.errorMessage = error.error.message;
-  //     },
-  //   });
-  // }
-
   getCustomers() {
     this.customerService.getCustomers().subscribe({
       next: (data: CustomerImp[]) => {
-
-        console.log('BEFORE:', this.customers.length);
-
         this.customers = data;
-
-        console.log('AFTER:', this.customers.length);
-
         this.cd.detectChanges();
       },
       error: (error) => {
-        console.error(error);
         this.errorMessage = error.error?.message;
       }
     });
   }
-
 
 
   handleSearch() {
@@ -93,6 +75,9 @@ export class Customers implements OnInit {
 
   handeleCustomerAccounts(customer: CustomerImp) {
 
-    this.router.navigateByUrl("/customerAccounts/"+customer.id,{state:customer});
-  }
+    this.router.navigate(['/admin/customerAccounts', customer.id]);  }
+
+
+
+
 }

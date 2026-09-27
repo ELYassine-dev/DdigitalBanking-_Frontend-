@@ -32,7 +32,9 @@
               <td>{{customer.email}}</td>
               <td>{{customer.phone}}</td>
               <td>{{customer.adresse}}</td>
-              <td >
+              @if(authservice.roles.includes('ADMIN')){
+
+                <td>
                 <button (click)="handleDelete(customer)" class="btn btn-danger" >
                   <i class="bi bi-trash"></i>
                 </button>
@@ -42,6 +44,7 @@
                 <i class="bi bi-eye"></i>
               </button>
             </td>
+              }
             </tr>
           }
 
